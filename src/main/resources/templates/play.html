@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <h1>OX 퀴즈 게임 : PLAY</h1>
+
+    <h3>퀴즈</h3>
+
+    <div>
+        <!-- 퀴즈 내용을 표시할 곳 -->
+        <p th:text="${quizContent}">퀴즈 내용이 여기에 표시됩니다.</p>
+    </div>
+
+    <div class="button-container">
+        <!-- O 버튼 -->
+        <form th:action="@{/quiz/check}" method="post">
+            <input type="hidden" name="playId" th:value="${quizId}">
+            <button type="submit" name="userAnswer" value="O">O</button>
+
+            <input type="hidden" name="playId" th:value="${quizId}">
+            <button type="submit" name="userAnswer" value="X">X</button>
+        </form>
+
+        <!-- X 버튼 -->
+<!--        <form th:action="@{/quiz/check}" method="post">-->
+
+<!--        </form>-->
+    </div>
+
+    <a th:href="@{/quiz}">메인 화면으로 돌아가기</a>
+</body>
+</html>

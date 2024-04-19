@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>OX Quiz Application</h1>
+    <h2>퀴즈 목록</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>내용</th>
+            <th>해답</th>
+            <th>작성자</th>
+            <th>변경</th>
+            <th>삭제</th>
+        </tr>
+
+        <tr th:each="oxquiz : ${oxQuizDto}">
+            <td th:text="${oxquiz.id}" style="text-align: center;"></td>
+            <td th:text="${oxquiz.quiz}"></td>
+            <td th:text="${oxquiz.answer}" style="text-align: center;"></td>
+            <td th:text="${oxquiz.writer}" style="text-align: center;"></td>
+
+            <td>
+                <form th:action="@{/quiz/update}" method="get">
+                    <input type="hidden" name="updateId" th:value="${oxquiz.id}">
+                    <input type="submit" value="변경">
+                </form>
+            </td>
+
+            <td>
+                <form th:action="@{/quiz/delete/{deleteId}(deleteId=${oxquiz.id})}" method="post">
+                    <input type="hidden" name="deleteId" th:value="${oxquiz.id}">
+                    <input type="submit" value="삭제">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <form th:action="@{/quiz/insert}" method="get">
+        <input type="submit" value="퀴즈 등록">
+    </form>
+
+    <form th:action="@{/quiz/play}" method="get">
+        <input type="submit" value="퀴즈 플레이 시작">
+    </form>
+</body>
+</html>

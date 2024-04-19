@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class OXQuizDto {
     private Long id;
 
-    @NotBlank(message = "퀴즈를 입력하세요.")
+    @NotBlank(message = "공백일 수 없습니다.")
     private String quiz;
 
     @NotBlank(message = "정답(O/X)을 입력하세요.")
